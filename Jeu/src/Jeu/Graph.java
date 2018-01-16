@@ -1,10 +1,7 @@
 package Jeu;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.ImageObserver;
 import java.util.Map;
 
@@ -30,11 +27,8 @@ public class Graph extends JPanel implements KeyListener {
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
         addKeyListener(this);
-    }
 
-    @Override
-    public boolean isFocusTraversable() {
-        return true;
+        this.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "left");
     }
 
     public void paint(Graphics g) {
@@ -102,47 +96,32 @@ public class Graph extends JPanel implements KeyListener {
 
     }
 
-        @Override
+    @Override
     public void keyPressed(final KeyEvent e) {
-
-            if (){
-
-                final int keyCode = e.getKeyCode();
-                if (keyCode == KeyEvent.VK_S) {
-                    this.pY += 80;
-                    this.repaint();
-                } else if (keyCode == KeyEvent.VK_Z) {
-                    this.pY -= 80;
-                    this.repaint();
-                } else if (keyCode == KeyEvent.VK_D) {
-                    this.pX += 80;
-                    this.repaint();
-                } else if (keyCode == KeyEvent.VK_Q) {
-                    this.pX -= 80;
-                    this.repaint();
-                }
-            }
-            else {
-                final int keyCode = e.getKeyCode();
-                if (keyCode == KeyEvent.VK_S) {
-                    this.pY += 0;
-                    this.repaint();
-                } else if (keyCode == KeyEvent.VK_Z) {
-                    this.pY -= 0;
-                    this.repaint();
-                } else if (keyCode == KeyEvent.VK_D) {
-                    this.pX += 0;
-                    this.repaint();
-                } else if (keyCode == KeyEvent.VK_Q) {
-                    this.pX -= 0;
-                    this.repaint();
-                }
-            }
-            setFocusable(true);
+        final int keyCode = e.getKeyCode();
+        if (keyCode == KeyEvent.VK_S) {
+            System.out.println("s");
+            this.pY += 80;
+            this.repaint();
+        } else if (keyCode == KeyEvent.VK_Z) {
+            this.pY -= 80;
+            this.repaint();
+        } else if (keyCode == KeyEvent.VK_D) {
+            this.pX += 80;
+            this.repaint();
+        } else if (keyCode == KeyEvent.VK_Q) {
+            this.pX -= 80;
+            this.repaint();
         }
+        setFocusable(true);
+    }
 
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    public void deplace (int keycode) {
+        if (keycode == KeyEvent.VK_S) {}
     }
 }
