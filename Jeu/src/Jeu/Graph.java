@@ -1,14 +1,18 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
 package Jeu;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.ImageObserver;
-import java.util.Map;
-
-import javax.swing.*;
+import javax.swing.JPanel;
 
 public class Graph extends JPanel implements KeyListener {
     private Case map;
@@ -20,53 +24,45 @@ public class Graph extends JPanel implements KeyListener {
     private int pX;
     private int pY;
 
-
     public Graph(Case map, Personnage personnage) {
-        //this.personnage = personnage;
         this.map = map;
         this.pX = 80;
         this.pY = 80;
-        //setBackground(new Color(1.0f,1.0f,1.0f,0.5f));
-        setBackground(Color.BLACK);
-        setDoubleBuffered(true);
-        addKeyListener(this);
+        this.setBackground(Color.BLACK);
+        this.setDoubleBuffered(true);
+        this.addKeyListener(this);
     }
 
-    @Override
     public boolean isFocusTraversable() {
         return true;
     }
 
     public void paint(Graphics g) {
         super.paint(g);
+        Graphics2D g2d = (Graphics2D)g;
 
-        Graphics2D g2d = (Graphics2D) g;
-
-        int index = 0;
-        while (index < (map.getCaseWidthInTiles() * map.getCaseHeightInTiles())) {
-            for (int i = 0; i < map.getCaseWidthInTiles(); i++) {
-                for (int j = 0; j < map.getCaseHeightInTiles(); j++) {
-                    g2d.drawImage(map.getTileImage(index), posX, posY, this);
-                    posX += map.getTileWidth();
-                    index++;
+        for(int index = 0; index < this.map.getCaseWidthInTiles() * this.map.getCaseHeightInTiles(); this.posY = 0) {
+            for(int i = 0; i < this.map.getCaseWidthInTiles(); ++i) {
+                for(int j = 0; j < this.map.getCaseHeightInTiles(); ++j) {
+                    g2d.drawImage(this.map.getTileImage(index), this.posX, this.posY, this);
+                    this.posX += this.map.getTileWidth();
+                    ++index;
                 }
-                posX = 0;
-                posY += map.getTileHeight();
+
+                this.posX = 0;
+                this.posY += this.map.getTileHeight();
             }
-            posY = 0;
         }
 
-        //g2d.drawImage(personnage.getImage(), personnage.getX(), personnage.getY(), this);
-        Graphics2D g2 = (Graphics2D) g;
-        image = Toolkit.getDefaultToolkit().getImage("hero.png");
-        g2.drawImage(image, pX, pY, (ImageObserver) this);
-
+        Graphics2D g2 = (Graphics2D)g;
+        this.image = Toolkit.getDefaultToolkit().getImage("hero.png");
+        g2.drawImage(this.image, this.pX, this.pY, this);
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
     }
 
     public Case getCase() {
-        return map;
+        return this.map;
     }
 
     public void setCase(Case map) {
@@ -74,7 +70,7 @@ public class Graph extends JPanel implements KeyListener {
     }
 
     public Personnage getPersonnage() {
-        return personnage;
+        return this.personnage;
     }
 
     public void setPersonnage(Personnage personnage) {
@@ -82,7 +78,7 @@ public class Graph extends JPanel implements KeyListener {
     }
 
     public int getPosX() {
-        return posX;
+        return this.posX;
     }
 
     public void setPosX(int posX) {
@@ -90,59 +86,53 @@ public class Graph extends JPanel implements KeyListener {
     }
 
     public int getPosY() {
-        return posY;
+        return this.posY;
     }
 
     public void setPosY(int posY) {
         this.posY = posY;
     }
 
-    @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
-        @Override
-    public void keyPressed(final KeyEvent e) {
-
-            if (){
-
-                final int keyCode = e.getKeyCode();
-                if (keyCode == KeyEvent.VK_S) {
-                    this.pY += 80;
-                    this.repaint();
-                } else if (keyCode == KeyEvent.VK_Z) {
-                    this.pY -= 80;
-                    this.repaint();
-                } else if (keyCode == KeyEvent.VK_D) {
-                    this.pX += 80;
-                    this.repaint();
-                } else if (keyCode == KeyEvent.VK_Q) {
-                    this.pX -= 80;
-                    this.repaint();
-                }
+    public void keyPressed(KeyEvent e) {
+        int keyCode;
+        if ((this.getPosX() <= 0 || this.getPosX() >= 1040) && (this.getPosY() <= 0 || this.getPosY() >= 1840)) {
+            keyCode = e.getKeyCode();
+            if (keyCode == 83) {
+                this.pY += 0;
+                this.repaint();
+            } else if (keyCode == 90) {
+                this.pY -= 0;
+                this.repaint();
+            } else if (keyCode == 68) {
+                this.pX += 0;
+                this.repaint();
+            } else if (keyCode == 81) {
+                this.pX -= 0;
+                this.repaint();
             }
-            else {
-                final int keyCode = e.getKeyCode();
-                if (keyCode == KeyEvent.VK_S) {
-                    this.pY += 0;
-                    this.repaint();
-                } else if (keyCode == KeyEvent.VK_Z) {
-                    this.pY -= 0;
-                    this.repaint();
-                } else if (keyCode == KeyEvent.VK_D) {
-                    this.pX += 0;
-                    this.repaint();
-                } else if (keyCode == KeyEvent.VK_Q) {
-                    this.pX -= 0;
-                    this.repaint();
-                }
+        } else {
+            keyCode = e.getKeyCode();
+            if (keyCode == 83) {
+                this.pY += 80;
+                this.repaint();
+            } else if (keyCode == 90) {
+                this.pY -= 80;
+                this.repaint();
+            } else if (keyCode == 68) {
+                this.pX += 80;
+                this.repaint();
+            } else if (keyCode == 81) {
+                this.pX -= 80;
+                this.repaint();
             }
-            setFocusable(true);
         }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
+        this.setFocusable(true);
+    }
 
+    public void keyReleased(KeyEvent e) {
     }
 }
