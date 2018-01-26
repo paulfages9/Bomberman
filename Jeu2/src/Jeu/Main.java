@@ -9,7 +9,7 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args) {
-        Fenetre fenetre = new Fenetre();
-
+        //Fenetre fenetre = new Fenetre();
+        Menu menu = new Menu();
     }
 }
